@@ -5,7 +5,7 @@ pragma solidity ^0.8.20;
 import "@openzeppelin/contracts/access/Ownable.sol";
 
  // Contrat Voting
-contract Vote is Ownable(msg.sender) {
+contract Voting is Ownable(msg.sender) {
     // Structures de données
     struct Voter {
         bool isRegistered;

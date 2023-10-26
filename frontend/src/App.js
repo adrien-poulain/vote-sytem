@@ -1,13 +1,13 @@
 // ./frontend/src/App.js
 import React, { Component } from "react"
-import Voting from "./frontend/src/artifacts/contracts/Voting.sol/Voting.json"
-import getWeb3 from "./getWeb3"
+import Voting from "./artifacts/contracts/Voting.sol/Voting.json"
+import getWeb3 from "./getWeb3.js"
 import "./App.css"
 
 class App extends Component {
   state = {
     web3: null,
-    accounts: null,
+    accounts: [],
     contract: null,
     userAddress: null,
     isOwner: false,
@@ -22,28 +22,29 @@ class App extends Component {
 
       // Use web3 to get the user's accounts.
       /* on récupère le tableau des comptes sur le metamask du user */
-      const accounts = await web3.eth.getAccounts()
+      let accounts = await web3.eth.getAccounts()
+      console.log(accounts)
 
   
       /* Création de l'objet de contrat avec l'abi et l'addresse du contrat  */
       const instance = new web3.eth.Contract(
         Voting.abi,
-        ""
+        "0xeFb802c9FAa5EAf28D794A8E5Fa94826Db4167Da"
       )
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance })
-
-      let account = this.state.accounts[0]
+      console.log(this.state)
+      // let account = this.state.accounts[0]
 
       this.setState({
-        userAddress: account.slice(0, 6) + "..." + account.slice(38, 42),
+        userAddress: accounts[0].slice(0, 6) + "..." + accounts[0].slice(38, 42),
       })
 
 			// Check if the user is the owner
       const owner = await instance.methods.owner().call()
-      if (account === owner) {
+      if (accounts[0] === owner) {
         this.setState({
           isOwner: true,
         })
