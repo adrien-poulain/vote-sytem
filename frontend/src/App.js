@@ -29,7 +29,7 @@ class App extends Component {
       /* Création de l'objet de contrat avec l'abi et l'addresse du contrat  */
       const instance = new web3.eth.Contract(
         Voting.abi,
-        "0xeFb802c9FAa5EAf28D794A8E5Fa94826Db4167Da"
+        "0x59D88aD5bD90ebbBBcb135D65011e386f17f6359"
       )
 
       // Set web3, accounts, and contract to the state, and then proceed with an

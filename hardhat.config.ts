@@ -2,6 +2,18 @@
 import { HardhatUserConfig, task } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 
+// Go to https://infura.io, sign up, create a new API key
+// in its dashboard, and replace "KEY" with it
+const INFURA_API_KEY = "5965f7a1798c4508ae2673c04b285b1e";
+
+// Replace this private key with your Sepolia account private key
+// To export your private key from Coinbase Wallet, go to
+// Settings > Developer Settings > Show private key
+// To export your private key from Metamask, open Metamask and
+// go to Account Details > Export Private Key
+// Beware: NEVER put real Ether into testing accounts
+const SEPOLIA_PRIVATE_KEY = "9d9107e539dfc9dde87e0ebac3cd61ddd4e80c4011213accfb73e73debca4184";
+
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (args, hre) => {
@@ -25,6 +37,10 @@ const config: HardhatUserConfig = {
         mnemonic: "test test test test test test test test test test test junk", // test test test test test test test test test test test junk
       },
     },
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      accounts: [SEPOLIA_PRIVATE_KEY]
+    }
     // hardhat: {
     //   accounts: [
     //     {
